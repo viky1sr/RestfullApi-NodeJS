@@ -1,0 +1,20 @@
+{
+  "name": "latihan_apinodejs",
+  "version": "1.0.0",
+  "description": "Latihan Backend API",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=production node server",
+    "dev": "nodemon server"
+  },
+  "author": "Viky1sr",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express-resource": "^1.0.0"
+  }
+}
