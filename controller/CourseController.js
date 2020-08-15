@@ -62,3 +62,42 @@ exports.addCourse = asyncHandler(async (req, res, next) =>{
         data: course
     });
 });
+
+exports.updateCourse = asyncHandler(async (req, res, next) =>{
+    let course = await CoursesDB.findById(req.params.id);
+
+    if(!course) {
+        return next(
+            new ErrorResponse(`No course with id of ${req.params.id}`),
+            404
+        );
+    }
+
+     course = await CoursesDB.findByIdAndUpdate(req.params.id,req.body, {
+         new: true,
+         runValidators: true
+     });
+
+    res.status(200).json({
+        success: true,
+        data: course
+    });
+});
+
+exports.deleteCourse = asyncHandler(async (req, res, next) =>{
+    const course = await CoursesDB.findById(req.params.id);
+
+    if(!course) {
+        return next(
+            new ErrorResponse(`No course with id of ${req.params.id}`),
+            404
+        );
+    }
+
+    await course.remove();
+
+    res.status(200).json({
+        success: true,
+        data: {}
+    });
+});
