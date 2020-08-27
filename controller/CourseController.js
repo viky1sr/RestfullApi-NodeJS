@@ -5,12 +5,16 @@ const asyncHandler = require('../middleware/asyncHandler');
 const gecoder = require('../partial/geocoder');
 
 exports.getCourses = asyncHandler(async (req, res, next) =>{
-    let query;
-
     if(req.params.bootcampId) {
-        query = CoursesDB.find({bootcamp: req.params.bootcampId})
+        const courses = await CoursesDB.find({bootcamp: req.params.bootcampId});
+
+        return  res.status(200).json({
+           success: true,
+           count: courses.length,
+            data: courses
+        });
     } else {
-        query = CoursesDB.find();
+        res.status(200).json(res.advanceResults);
     }
 
     const course = await query;
