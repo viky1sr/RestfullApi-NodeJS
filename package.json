@@ -15,6 +15,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "express-fileupload": "^1.2.0",
     "express-resource": "^1.0.0",
     "mongoose": "^5.9.29",
     "morgan": "^1.10.0",
