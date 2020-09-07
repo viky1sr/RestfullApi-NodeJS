@@ -1,3 +1,3 @@
 ## Notice
-* -i (import) -d (destroyed)
-* run seeder = node seeds/namefile  -i or -d
+* npm run seed-i (insert DatabaseSeeder)
+* npm run seed-d (delete DatabaseSeeder)

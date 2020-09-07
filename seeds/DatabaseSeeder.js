@@ -7,6 +7,7 @@ require('dotenv').config({ path: './config/config.env' });
 // Load Models
 const Bootcamp = require('../models/bootcamps')
 const Courses = require('../models/course')
+const Users = require('../models/users')
 
 // connect to DB
 mongoose.connect(process.env.MONGO_DB, {
@@ -42,6 +43,7 @@ const deleteData = async () => {
     try {
         await Bootcamp.deleteMany();
         await Courses.deleteMany();
+        await Users.deleteMany();
 
         console.log('Data destroyed...')
         process.exit();

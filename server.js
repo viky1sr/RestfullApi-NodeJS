@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const fileupload = require('express-fileupload');
 const path = require('path');
+const session = require('express-session');
 
 const connectDB = require('./config/db')
 const errorHandlers = require('./middleware/error')
@@ -12,11 +13,16 @@ connectDB();
 dotenv.config({path: './config/config.env'});
 
 const app = express();
+app.use(session({
+    secret: 'positronx',
+    saveUninitialized: false,
+    resave: false
+}));
 
 // Body parser
 app.use(express.json());
 
-<!-- Dev loggin middleware -->
+<!-- Dev login middleware -->
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
@@ -30,10 +36,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 <!-- Router file -->
 const bootcamps = require('./routes/bootcamps');
 const courses = require('./routes/courses');
+const auth = require('./routes/auth');
+const { body } = require('express-validator');
 
 <!-- Mount routers -->
 app.use('/api/v1/bootcamps',bootcamps);
 app.use('/api/v1/courses',courses);
+app.use('/api/v1/auth',auth);
 
 // Error Handle
 app.use(errorHandlers);
