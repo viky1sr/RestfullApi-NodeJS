@@ -16,11 +16,10 @@ mongoose.connect(process.env.MONGO_DB, {
     useUnifiedTopology: true,
 });
 
-// Read JSON file
+// Read JSON file location
 const bootcampsJSON = JSON.parse(
     fs.readFileSync(`${__dirname}/../storage/data/bootcamps.json`, 'utf-8')
 );
-
 const coursesJSON = JSON.parse(
     fs.readFileSync(`${__dirname}/../storage/data/courses.json`, 'utf-8')
 );

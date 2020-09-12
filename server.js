@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const fileupload = require('express-fileupload');
 const path = require('path');
 const session = require('express-session');
+var cookieParser = require('cookie-parser')
 
 const connectDB = require('./config/db')
 const errorHandlers = require('./middleware/error')
@@ -18,6 +19,8 @@ app.use(session({
     saveUninitialized: false,
     resave: false
 }));
+
+app.use(cookieParser())
 
 // Body parser
 app.use(express.json());
